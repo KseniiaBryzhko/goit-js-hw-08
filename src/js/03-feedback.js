@@ -17,17 +17,21 @@ const onInput = event => {
 };
 
 const onSubmit = event => {
-  event.preventDefault();
-  event.currentTarget.reset();
-  localStorage.removeItem(STORAGE_KEY);
+  if (refs.email.value === '' || refs.message.value === '') {
+    alert('Please fill in all fields of the form');
+  } else {
+    console.log(formData);
 
-  console.log(formData);
+    event.preventDefault();
+    event.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+  }
 };
 
 const onPageReset = () => {
   if (savedMessage) {
-    refs.email.value = savedMessage.email;
-    refs.message.value = savedMessage.message;
+    refs.email.value = savedMessage.email || '';
+    refs.message.value = savedMessage.message || '';
   }
 };
 
