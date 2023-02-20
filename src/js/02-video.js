@@ -12,19 +12,22 @@ const currentTime = Number(localStorage.getItem('videoplayer-current-time'));
 
 player.on('timeupdate', throttle(onPlay, 1000));
 
-player
-  .setCurrentTime(currentTime)
-  .then(function (seconds) {
-    // seconds = the actual time that the player seeked to
-  })
-  .catch(function (error) {
-    switch (error.name) {
-      case 'RangeError':
-        // the time was less than 0 or greater than the video’s duration
-        break;
+player.setCurrentTime(currentTime || 0);
 
-      default:
-        // some other error occurred
-        break;
-    }
-  });
+// попередній варіант - з бібліотеки
+// player
+//   .setCurrentTime(currentTime)
+//   .then(function (seconds) {
+//     // seconds = the actual time that the player seeked to
+//   })
+//   .catch(function (error) {
+//     switch (error.name) {
+//       case 'RangeError':
+//         // the time was less than 0 or greater than the video’s duration
+//         break;
+
+//       default:
+//         // some other error occurred
+//         break;
+//     }
+//   });
